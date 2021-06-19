@@ -14,7 +14,7 @@ then
     exit 1
 fi
 
-assureRepo()
+assure_repo()
 {
     git status > /dev/null 2>&1
 
@@ -25,13 +25,13 @@ assureRepo()
     fi
 }
 
-syncRepo()
+sync_repo()
 {
     git fetch -ap > /dev/null 2>&1
     git pull > /dev/null 2>&1
 }
 
-checkoutBranch()
+checkout_branch()
 {
     branch=$1
 
@@ -72,18 +72,18 @@ check()
 
     printf "$check_output\n"
 
-    cleanupBranch
+    cleanup_branch
     exit $check_status
 }
 
-cleanupBranch()
+cleanup_branch()
 {
     git checkout master > /dev/null 2>&1
     git branch -d testing > /dev/null 2>&1
 }
 
 cd "$repo_path"
-assureRepo
-syncRepo
-checkoutBranch "$branch"
+assure_repo
+sync_repo
+checkout_branch "$branch"
 check
