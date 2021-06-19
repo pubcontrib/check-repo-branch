@@ -4,17 +4,17 @@ branch=$2
 
 if [ ! -d "$repo_path" ]
 then
-    printf "[ERROR] No repo path found.\n"
+    printf '[ERROR] No repo path found.\n'
     exit 1
 fi
 
 if [ -z "$branch" ]
 then
-    printf "[ERROR] No branch given.\n"
+    printf '[ERROR] No branch given.\n'
     exit 1
 fi
 
-assureRepo()
+assure_repo()
 {
     git status > /dev/null 2>&1
 
@@ -25,13 +25,13 @@ assureRepo()
     fi
 }
 
-syncRepo()
+sync_repo()
 {
     git fetch -ap > /dev/null 2>&1
     git pull > /dev/null 2>&1
 }
 
-checkoutBranch()
+checkout_branch()
 {
     branch=$1
 
@@ -52,7 +52,7 @@ check()
 
     if [ $build_status -ne 0 ]
     then
-        printf "[ERROR] Build failed.\n"
+        printf '[ERROR] Build failed.\n'
         exit 1
     fi
 
@@ -66,24 +66,24 @@ check()
 
     if [ $clean_status -ne 0 ]
     then
-        printf "[ERROR] Clean failed.\n"
+        printf '[ERROR] Clean failed.\n'
         exit 1
     fi
 
     printf "$check_output\n"
 
-    cleanupBranch
+    cleanup_branch
     exit $check_status
 }
 
-cleanupBranch()
+cleanup_branch()
 {
     git checkout master > /dev/null 2>&1
     git branch -d testing > /dev/null 2>&1
 }
 
 cd "$repo_path"
-assureRepo
-syncRepo
-checkoutBranch "$branch"
+assure_repo
+sync_repo
+checkout_branch "$branch"
 check
