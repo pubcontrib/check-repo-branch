@@ -4,13 +4,13 @@ branch=$2
 
 if [ ! -d "$repo_path" ]
 then
-    printf "[ERROR] No repo path found.\n"
+    printf '[ERROR] No repo path found.\n'
     exit 1
 fi
 
 if [ -z "$branch" ]
 then
-    printf "[ERROR] No branch given.\n"
+    printf '[ERROR] No branch given.\n'
     exit 1
 fi
 
@@ -52,7 +52,7 @@ check()
 
     if [ $build_status -ne 0 ]
     then
-        printf "[ERROR] Build failed.\n"
+        printf '[ERROR] Build failed.\n'
         exit 1
     fi
 
@@ -66,7 +66,7 @@ check()
 
     if [ $clean_status -ne 0 ]
     then
-        printf "[ERROR] Clean failed.\n"
+        printf '[ERROR] Clean failed.\n'
         exit 1
     fi
 
