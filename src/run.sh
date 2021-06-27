@@ -70,7 +70,7 @@ check()
         exit 1
     fi
 
-    printf "%s\n" "$check_output"
+    printf '%s\n' "$check_output"
 
     cleanup_branch
     exit $check_status
