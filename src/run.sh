@@ -4,13 +4,13 @@ branch=$2
 
 if [ ! -d "$repo_path" ]
 then
-    printf '[ERROR] No repo path found.\n'
+    printf '[ERROR] No repo path found.\n' 1>&2
     exit 1
 fi
 
 if [ -z "$branch" ]
 then
-    printf '[ERROR] No branch given.\n'
+    printf '[ERROR] No branch given.\n' 1>&2
     exit 1
 fi
 
@@ -20,7 +20,7 @@ assure_repo()
 
     if [ $? -ne 0 ]
     then
-        printf "[ERROR] Repo doesn't exist.\n"
+        printf "[ERROR] Repo doesn't exist.\n" 1>&2
         exit 1
     fi
 }
@@ -39,7 +39,7 @@ checkout_branch()
 
     if [ $? -ne 0 ]
     then
-        printf "[ERROR] Branch doesn't exist.\n"
+        printf "[ERROR] Branch doesn't exist.\n" 1>&2
         exit 1
     fi
 }
@@ -52,7 +52,7 @@ check()
 
     if [ $build_status -ne 0 ]
     then
-        printf '[ERROR] Build failed.\n'
+        printf '[ERROR] Build failed.\n' 1>&2
         exit 1
     fi
 
@@ -66,7 +66,7 @@ check()
 
     if [ $clean_status -ne 0 ]
     then
-        printf '[ERROR] Clean failed.\n'
+        printf '[ERROR] Clean failed.\n' 1>&2
         exit 1
     fi
 
